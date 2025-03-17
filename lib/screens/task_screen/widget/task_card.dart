@@ -50,7 +50,6 @@ class _TaskCardState extends State<TaskCard> with TickerProviderStateMixin {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Task Title & Category
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -74,10 +73,7 @@ class _TaskCardState extends State<TaskCard> with TickerProviderStateMixin {
                   ),
                 ],
               ),
-
               const SizedBox(height: 8),
-
-              // Animated Expansion for Description
               AnimatedSize(
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeInOut,

@@ -77,7 +77,7 @@ class _TaskScreenState extends State<TaskScreen> {
   Widget build(BuildContext context) {
     return CustomScaffold(
       appbar: AppBar(
-        title: Text(
+        title: const Text(
           "Todo List",
           style: TextStyle(
               color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold),
@@ -103,9 +103,9 @@ class _TaskScreenState extends State<TaskScreen> {
               clearFilterHeader(),
               offLineTaskList.isEmpty
                   ? Container(
-                      padding: EdgeInsets.only(top: 250),
+                      padding: const EdgeInsets.only(top: 250),
                       alignment: Alignment.center,
-                      child: Text(
+                      child: const Text(
                         "No Task added",
                         style: TextStyle(
                             color: Colors.grey,
@@ -144,7 +144,7 @@ class _TaskScreenState extends State<TaskScreen> {
                         return null;
                       },
                     ),
-              SizedBox(
+        const SizedBox(
                 height: 150,
               ),
             ]
@@ -152,9 +152,9 @@ class _TaskScreenState extends State<TaskScreen> {
               clearFilterHeader(),
               taskList.isEmpty
                   ? Container(
-                      padding: EdgeInsets.only(top: 250),
+                      padding: const EdgeInsets.only(top: 250),
                       alignment: Alignment.center,
-                      child: Text(
+                      child: const Text(
                         "No Task added",
                         style: TextStyle(
                             color: Colors.grey,
@@ -193,7 +193,7 @@ class _TaskScreenState extends State<TaskScreen> {
                         return null;
                       },
                     ),
-              SizedBox(
+        const SizedBox(
                 height: 150,
               ),
             ],
@@ -204,7 +204,7 @@ class _TaskScreenState extends State<TaskScreen> {
     return Visibility(
       visible: selectedCategory != "All" || selectedStatus != "All",
       child: Padding(
-        padding: EdgeInsets.only(left: 15, right: 15, top: 20, bottom: 20),
+        padding: const EdgeInsets.only(left: 15, right: 15, top: 20, bottom: 20),
         child: Container(
           width: double.infinity,
           alignment: Alignment.centerRight,
@@ -215,7 +215,7 @@ class _TaskScreenState extends State<TaskScreen> {
                 selectedCategory = "All";
               });
             },
-            child: Text(
+            child: const Text(
               "Remove Filters",
               style: TextStyle(
                 color: Colors.red,
@@ -223,7 +223,6 @@ class _TaskScreenState extends State<TaskScreen> {
                 fontWeight: FontWeight.bold,
                 decoration: TextDecoration.underline,
                 decorationColor: Colors.red,
-                // Red underline
                 decorationThickness: 2,
               ),
             ),
@@ -242,7 +241,7 @@ class _TaskScreenState extends State<TaskScreen> {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       builder: (context) {
@@ -257,7 +256,7 @@ class _TaskScreenState extends State<TaskScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Sort by Category",
+                    const Text("Sort by Category",
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold)),
                     Column(
@@ -282,8 +281,8 @@ class _TaskScreenState extends State<TaskScreen> {
                         );
                       }).toList(),
                     ),
-                    SizedBox(height: 10),
-                    Text("Sort by Status",
+                    const SizedBox(height: 10),
+                    const Text("Sort by Status",
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold)),
                     Column(
@@ -312,7 +311,7 @@ class _TaskScreenState extends State<TaskScreen> {
                         );
                       }).toList(),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () {
                         onFilterSelected(tempCategory, tempStatus);
@@ -320,7 +319,7 @@ class _TaskScreenState extends State<TaskScreen> {
                       },
                       style: ElevatedButton.styleFrom(
                         minimumSize:
-                            Size(double.infinity, 50), // Full-width button
+                        const Size(double.infinity, 50), // Full-width button
                       ),
                       child: const Text("Apply Filter"),
                     ),

@@ -28,7 +28,7 @@ class CustomScaffold extends StatelessWidget {
         color: Colors.black,
         boxShadow: [
           BoxShadow(
-            offset: Offset(0, -10),
+            offset:const  Offset(0, -10),
             blurRadius: 15,
             color: Colors.black.withOpacity(0.1),
           ),
@@ -56,7 +56,7 @@ class CustomScaffold extends StatelessWidget {
                   // mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Icon(Icons.logout,color: Colors.white,),
+                    const Icon(Icons.logout,color: Colors.white,),
                     SizedBox(height: _height*0.005,),
                     Text(
                       "Logout",maxLines: 1,overflow: TextOverflow.ellipsis,
@@ -76,9 +76,9 @@ class CustomScaffold extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.sort,color: Colors.white,),
+                    const Icon(Icons.sort,color: Colors.white,),
                     SizedBox(height: _height*0.005,),
-                    Text("Filters",style: TextStyle(
+                    const Text("Filters",style: TextStyle(
                         color: Colors.white),),
                     SizedBox(height: _height*0.01,),
                   ],),
@@ -103,7 +103,7 @@ class CustomScaffold extends StatelessWidget {
           Align(
             alignment: Alignment.bottomRight,
             child: Padding(
-              padding: EdgeInsets.only(right: 20, bottom: 30), // Ensure same padding
+              padding:const  EdgeInsets.only(right: 20, bottom: 30), // Ensure same padding
               child: FloatingActionButton(
                 heroTag: "rightFAB",
                 onPressed: () async{
@@ -113,7 +113,7 @@ class CustomScaffold extends StatelessWidget {
                   );
                   checkConnection();
                 },
-                child: Icon(Icons.add),
+                child: const Icon(Icons.add),
               ),
             ),
           ),

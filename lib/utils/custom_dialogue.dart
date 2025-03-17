@@ -42,7 +42,6 @@ class CustomDialogue{
             TextButton(
               onPressed: () {
                 onConfirm();  // Execute the delete function
-                // Navigator.pop(context); // Close the dialog
               },
               child: Text("Delete", style: TextStyle(color: Colors.red)),
             ),
