@@ -34,26 +34,6 @@ class NetworkService {
   }
 
 
-  // Future<List<TaskModel>> getTaskList () async{
-  //   List<TaskModel> taskList = [];
-  //   try{
-  //     var taskData = FirebaseFirestore.instance.collection('userTask').doc(FirebaseAuth.instance.currentUser?.uid).get();
-  //     TaskModel data;
-  //     await taskData.then((documentSnapshot) => {
-  //       if(documentSnapshot.exists && documentSnapshot.data()?["todoList"]!=null && documentSnapshot.data()?["todoList"] is List){
-  //         for(var item in documentSnapshot.data()?["todoList"]){
-  //           // log("this is the the document $item "),
-  //           taskList.add(TaskModel.fromJson(json:item)),
-  //         }
-  //       }
-  //     });
-  //   } catch (e) {
-  //     return taskList;
-  //   }
-  //   return taskList;
-  // }
-
-
 
   Future<void> addTask(TaskModel task, BuildContext context) async{
     await FirebaseFirestore.instance
@@ -143,7 +123,7 @@ class NetworkService {
         return true; // Internet is available
       }
     } catch (e) {
-      return false; // No internet or request failed
+      return false;
     }
     return false;
   }
@@ -160,9 +140,9 @@ class NetworkService {
       }
     }
     await UserPreferences.saveTasks(tempTaskList);
-    // SnackBarService.showSuccess("Task Edited in offline mode successfully");
-    // Navigator.pop(context);
-    // Navigator.pop(context);
+    SnackBarService.showSuccess("Task Edited in offline mode successfully");
+    Navigator.pop(context);
+    Navigator.pop(context);
   }
 
 

@@ -1,8 +1,5 @@
 
 
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class TaskModel{
 
   String name = '';
