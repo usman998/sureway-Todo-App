@@ -18,7 +18,7 @@ class TaskCard extends StatefulWidget {
   _TaskCardState createState() => _TaskCardState();
 }
 
-class _TaskCardState extends State<TaskCard> {
+class _TaskCardState extends State<TaskCard> with TickerProviderStateMixin {
   bool isExpanded = false;
 
   String formatDate(DateTime date) {
@@ -50,6 +50,7 @@ class _TaskCardState extends State<TaskCard> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Task Title & Category
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -74,36 +75,42 @@ class _TaskCardState extends State<TaskCard> {
                 ],
               ),
 
-              SizedBox(height: 8),
-              AnimatedContainer(
-                duration: Duration(milliseconds: 1000),
-                constraints: BoxConstraints(
-                  minHeight: 20.0,
-                  maxHeight: 200.0,// Expandable height
-                ),
-                child: Text(
-                  widget.task.description,
-                  maxLines: isExpanded ? null : 1,
-                  overflow: isExpanded ? TextOverflow.visible : TextOverflow.ellipsis,
-                  style: const TextStyle(fontSize: 14, color: Colors.grey),
+              const SizedBox(height: 8),
+
+              // Animated Expansion for Description
+              AnimatedSize(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+                child: Column(
+                  children: [
+                    Text(
+                      widget.task.description,
+                      maxLines: isExpanded ? null : 2,
+                      overflow: isExpanded ? TextOverflow.visible : TextOverflow.ellipsis,
+                      style: const TextStyle(fontSize: 14, color: Colors.grey),
+                    ),
+                    if (widget.task.description.length > 50)
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isExpanded = !isExpanded;
+                            });
+                          },
+                          child: Text(
+                            isExpanded ? "Read Less" : "Read More",
+                            style: const TextStyle(color: Colors.blue, fontSize: 14, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                  ],
                 ),
               ),
-              if (widget.task.description.length > 50) // Show only if text is long
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: TextButton(
-                    onPressed: () {
-                      setState(() {
-                        isExpanded = !isExpanded;
-                      });
-                    },
-                    child: Text(
-                      isExpanded ? "Read Less" : "Read More",
-                      style: TextStyle(color: Colors.blue, fontSize: 14),
-                    ),
-                  ),
-                ),
-              SizedBox(height: 8),
+
+              const SizedBox(height: 8),
+
+              // Task Due Date & Status
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

@@ -111,8 +111,9 @@ class _SignInFormContentState extends State<_SignInFormContent> {
         Navigator.pop(context);
         if(e.toString().contains("invalid-credential")){
           SnackBarService.showError(message: "User not found. Email or Password is incorrect");
+        } else{
+          SnackBarService.showError();
         }
-        SnackBarService.showError();
       }
     }
   }
@@ -131,6 +132,23 @@ class _SignInFormContentState extends State<_SignInFormContent> {
     return null;
   }
 
+  String? emailValidator(String? value,bool isSignUp) {
+    if (value == null || value.isEmpty) {
+      return 'Email is required';
+    }
+
+    // Regular expression for validating email
+    if(isSignUp) {
+      final emailRegex = RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+
+      if (!emailRegex.hasMatch(value)) {
+        return 'Enter a valid email address';
+      }
+    }
+
+    return null; // Returns null if the email is valid
+  }
+
   @override
   Widget build(BuildContext context) {
     final labelText = widget.isSignUp ? "Register" : "Login";
@@ -143,17 +161,12 @@ class _SignInFormContentState extends State<_SignInFormContent> {
           if (widget.email == null)
             TextFormField(
               controller: emailCtrl,
-              decoration: InputDecoration(labelText: "Email"),
+              decoration: InputDecoration(labelText: "Email",errorMaxLines: 3,),
               keyboardType: TextInputType.emailAddress,
               autocorrect: false,
               enableSuggestions: false,
               onFieldSubmitted: (_) => _submit(),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "Email is required";
-                }
-                return null;
-              },
+              validator: (value) => emailValidator(value,widget.isSignUp),
             ),
           const SizedBox(height: 16),
           TextFormField(
@@ -163,6 +176,7 @@ class _SignInFormContentState extends State<_SignInFormContent> {
             enableSuggestions: false,
             decoration: InputDecoration(
               labelText: "Password",
+              errorMaxLines: 3,
               suffixIcon: IconButton(
                 icon: Icon(
                   isPasswordVisible ? Icons.visibility : Icons.visibility_off,
